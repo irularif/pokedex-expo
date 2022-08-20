@@ -1,13 +1,13 @@
-type Query = Record<string, string>;
-
 const queryPokemon = {
-  getAllPokemon: `
+  getFuzzyPokemon: `
         {
             getFuzzyPokemon($params) {
                 key
                 num
                 color
                 sprite
+                types
+                shinySprite
             }
         }
     `,

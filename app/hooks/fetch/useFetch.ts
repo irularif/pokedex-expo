@@ -47,6 +47,9 @@ const useFetch = <T = undefined>(
 
   const fetchData = useCallback(
     (calback?: (oldData: any, newData: any, error?: unknown) => any) => {
+      if (state.fetchController) {
+        state.fetchController.abort();
+      }
       // create a fetch controller for each fetch
       let fetchController: any = new AbortController();
       dispatch({

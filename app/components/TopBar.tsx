@@ -45,8 +45,8 @@ const TopBar = ({ statusBarProps, children, style, ...props }: TopBarProps) => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    paddingHorizontal: 8,
-    paddingVertical: 16,
+    paddingHorizontal: 16,
+    paddingVertical: 8,
   },
   title: {
     color: colors.white,
