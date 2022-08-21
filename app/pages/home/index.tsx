@@ -6,12 +6,12 @@ import { FlashList } from "@shopify/flash-list";
 import { get } from "lodash";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { RefreshControl, StyleSheet, Text, View } from "react-native";
-import { TPokemons } from "types/pokemon";
+import { TPokemon } from "types/pokemon";
 import Header from "./Header";
 import Item from "./Item";
 
 const HomePage = () => {
-  const listRef = useRef<FlashList<TPokemons> | null>(null);
+  const listRef = useRef<FlashList<TPokemon> | null>(null);
   const searchState = useState("");
   const [search] = searchState;
   const [paging, setPaging] = useState({
@@ -27,13 +27,13 @@ const HomePage = () => {
       body: getQueryPokemon("getFuzzyPokemon", {
         take: 50,
         offset: paging.offset,
-        pokemon: search.toLowerCase() || "a",
+        pokemon: search.toLowerCase() || '"a"',
       }),
     };
   }, [paging, search]);
 
   // fetch data from api with custom hook
-  const { isLoading, data, fetch } = useFetch<Array<TPokemons>>(
+  const { isLoading, data, fetch } = useFetch<Array<TPokemon>>(
     [],
     fetchOptions
   );
@@ -68,7 +68,7 @@ const HomePage = () => {
         const ndata = merge(
           oldData,
           Object.values(newData),
-          (array: Array<TPokemons>) => {
+          (array: Array<TPokemon>) => {
             const a = array;
             for (let i = 0; i < a.length; ++i) {
               for (let j = i + 1; j < a.length; ++j) {

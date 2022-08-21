@@ -1,16 +1,42 @@
 const queryPokemon = {
   getFuzzyPokemon: `
-        {
-            getFuzzyPokemon($params) {
-                key
-                num
-                color
-                sprite
-                types
-                shinySprite
-            }
+      {
+        getFuzzyPokemon($params) {
+          key
+          num
+          color
+          sprite
+          types
+          shinySprite
+          backSprite
+          weight
+          height
+          baseStats {
+            hp 
+            attack 
+            defense 
+            specialattack 
+            specialdefense 
+            speed 
+          }
+          abilities { 
+            first 
+            second 
+            hidden 
+          }
         }
+      }
     `,
+  getAbility: `
+    {
+      getAbility($params) {
+        key
+        desc
+        name
+        shortDesc
+      }
+    }
+  `,
 };
 
 const getQueryPokemon = (
@@ -25,12 +51,7 @@ const getQueryPokemon = (
         if (idx > 0) {
           _params += ", ";
         }
-        _params += `${key}: `;
-        if (typeof params[key] === "string") {
-          _params += `"${params[key]}"`;
-        } else {
-          _params += params[key];
-        }
+        _params += `${key}: ${params[key]}`;
       });
       _params += ")";
     }

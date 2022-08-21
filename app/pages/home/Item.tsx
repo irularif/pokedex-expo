@@ -1,8 +1,9 @@
 import pokemonColors from "@assets/pokemon-colors";
 import { PokemonType } from "@favware/graphql-pokemon";
+import { useNavigation } from "@react-navigation/native";
 import Color from "color";
 import { get } from "lodash";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
   Dimensions,
   Image,
@@ -11,24 +12,30 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { TPokemons } from "types/pokemon";
+import { TPokemon } from "types/pokemon";
 
 interface ItemProps {
-  item: Partial<TPokemons>;
+  item: Partial<TPokemon>;
   index: number;
 }
 
 const Item = ({ item, index }: ItemProps) => {
+  const { navigate } = useNavigation();
   const [image, setImage] = useState(item.sprite);
   const { width } = Dimensions.get("screen");
   const iw = width / 2 - 24;
   const odd = index % 2 === 0;
   const type: PokemonType["name"] = get(item, "types.0", "normal");
+
+  const open = useCallback(() => {
+    navigate("Detail" as never, item as never);
+  }, [item]);
+
   const finalContainerStyle = StyleSheet.flatten([
     styles.container,
     {
       backgroundColor: Color(pokemonColors[type.toLowerCase()])
-        .lighten(0.6)
+        .lighten(0.4)
         .toString(),
       width: iw,
       height: iw,
@@ -55,7 +62,7 @@ const Item = ({ item, index }: ItemProps) => {
   }, [item]);
 
   return (
-    <TouchableOpacity style={finalContainerStyle}>
+    <TouchableOpacity style={finalContainerStyle} onPress={open}>
       <View style={finalImageStyle}>
         <Image
           source={{
@@ -65,6 +72,7 @@ const Item = ({ item, index }: ItemProps) => {
           onError={(e) => {
             setImage(item.shinySprite);
           }}
+          resizeMode="contain"
         />
       </View>
       <Text adjustsFontSizeToFit numberOfLines={1} style={finalTitleStyle}>

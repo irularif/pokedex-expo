@@ -1,5 +1,7 @@
-import { Pokemon, PokemonType } from "@favware/graphql-pokemon";
+import { Ability, Pokemon, PokemonType } from "@favware/graphql-pokemon";
 
-export type TPokemons = Partial<Omit<Pokemon, "types">> & {
+export type TPokemon = Partial<Omit<Pokemon, "types">> & {
   types?: Array<PokemonType["name"]>;
 };
+
+export type TPokemonAbility = Partial<Ability>;

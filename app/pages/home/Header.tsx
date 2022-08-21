@@ -4,11 +4,11 @@ import { FlashList } from "@shopify/flash-list";
 import { debounce } from "lodash";
 import { useCallback, useState } from "react";
 import { StyleSheet, Text, TextInput, View } from "react-native";
-import { TPokemons } from "types/pokemon";
+import { TPokemon } from "types/pokemon";
 
 interface HeaderProps {
   searchState: [string, React.Dispatch<React.SetStateAction<string>>];
-  listRef: React.MutableRefObject<FlashList<TPokemons> | null>;
+  listRef: React.MutableRefObject<FlashList<TPokemon> | null>;
 }
 
 const Header = ({ searchState }: HeaderProps) => {

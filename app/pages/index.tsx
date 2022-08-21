@@ -1,5 +1,6 @@
 import HomePage from "@app/pages/home";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import DetailPage from "./detail";
 
 const Stack = createNativeStackNavigator();
 
@@ -9,6 +10,13 @@ const Pages = () => {
       <Stack.Screen
         name="Home"
         component={HomePage}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="Detail"
+        component={DetailPage}
         options={{
           headerShown: false,
         }}
