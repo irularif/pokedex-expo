@@ -5,7 +5,7 @@
 
 ## 🚀 How to use it
 
-To set this repository up, you need an Expo account [with access to EAS](https://docs.expo.io/eas/). After that, you need to run these commands.
+To run this app, you need the Expo Go app. After that, you need to run this command.
 
 - `$ npm install --global expo-cli` - This installs expo command-line interface.
 - `$ npm install` - This installs all required Node libraries
